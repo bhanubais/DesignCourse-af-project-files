@@ -1,7 +1,7 @@
 body {
   margin: 0;
   height: 100vh;
-  background: #2864FF;
+  background: #2864ff;
   color: white;
 }
 
@@ -14,7 +14,7 @@ h1 {
 }
 
 .progress {
-  background-color: #A1BCFF;
+  background-color: #a1bcff;
   height: 3px;
   width: 0;
   position: absolute;
