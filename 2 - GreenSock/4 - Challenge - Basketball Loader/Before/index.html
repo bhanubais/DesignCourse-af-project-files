@@ -32,35 +32,38 @@
         const line = document.querySelector('.loader');
         const msg = document.querySelector('.mask h1');
 
-        const ballAn = gsap.from(ball, {
-            y: -400,
-            duration: 1,
-            opacity: 0,
-            rotate: 60,
-            ease: "bounce.out",
-            paused: true
-        });
+        gsap.set(ball, { yPercent: -600, rotationZ: -295, })
+        gsap.set(line, { scaleX: 0, })
+        gsap.set(msg, { yPercent: -100, })
 
-        const lineAn = gsap.from(line, {
-            width: 0,
-            delay: 0.75,
+        const ballAN = gsap.to(ball, {
+            yPercent: -50,
+            rotationZ: 0,
             duration: 2,
-            opacity: 0,
-            paused: true
-        });
+            ease: "bounce.out",
+            paused: true,
+        })
 
-        const msgAn = gsap.from(msg, {
-            y: -100,
-            delay: .5,
+        const msgAN = gsap.to(msg, {
+            yPercent: 0,
             duration: 1,
-            opacity: 0,
-            paused: true
-        });
+            delay: 2,
+            ease: "power2.out",
+            paused: true,
+        })
+
+        const lineAN = gsap.to(line, {
+            scaleX: 1,
+            duration: 2,
+            delay: 2.5,
+            ease: "power2.out",
+            paused: true,
+        })
 
         document.addEventListener('click', e => {
-            ballAn.play();
-            lineAn.play();
-            msgAn.play();
+            ballAN.play();
+            msgAN.play();
+            lineAN.play();
         })
 
     </script>
