@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,17 +13,57 @@
 
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <img src="ball.svg" alt="Basketball vector graphic">
 
-    <div class="mask"><h1>welcome.</h1></div>
+    <div class="mask">
+        <h1>welcome.</h1>
+    </div>
 
     <div class="loader"></div>
 
-   
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        const ball = document.querySelector('img');
+        const line = document.querySelector('.loader');
+        const msg = document.querySelector('.mask h1');
+
+        const ballAn = gsap.from(ball, {
+            y: -400,
+            duration: 1,
+            opacity: 0,
+            rotate: 60,
+            ease: "bounce.out",
+            paused: true
+        });
+
+        const lineAn = gsap.from(line, {
+            width: 0,
+            delay: 0.75,
+            duration: 2,
+            opacity: 0,
+            paused: true
+        });
+
+        const msgAn = gsap.from(msg, {
+            y: -100,
+            delay: .5,
+            duration: 1,
+            opacity: 0,
+            paused: true
+        });
+
+        document.addEventListener('click', e => {
+            ballAn.play();
+            lineAn.play();
+            msgAn.play();
+        })
 
     </script>
 </body>
+
 </html>
