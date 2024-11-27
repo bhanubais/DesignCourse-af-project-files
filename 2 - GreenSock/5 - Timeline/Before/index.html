@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +13,7 @@
 
     <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
     <div class="fade-container">
         <div class="fade1"></div>
@@ -19,11 +21,55 @@
         <div class="fade3"></div>
     </div>
 
-    <div class="mask"><h1>Oceana.</h1></div>
+    <div class="mask">
+        <h1>Oceana.</h1>
+    </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"
+        integrity="sha512-16esztaSRplJROstbIIdwX3N97V1+pZvV33ABoG1H2OyTttBxEGkTsoIVsiP1iaTtM8b3+hu2kB6pQ4Clr5yug=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
+        gsap.set(['.fade1', '.fade2', '.fade3'], {
+            scaleY: 0,
+            transformOrigin: '50% 50%',
+        });
+        gsap.set('.mask h1', {
+            xPercent: -100,
+        })
 
+        const t1 = gsap.timeline({
+            defaults: {
+                ease: "power4.inOut",
+                duration: 0.5,
+            }
+        });
+
+        t1
+            .to(['.fade1', '.fade2', '.fade3'], {
+                scaleY: 1,
+                stagger: 0.2,
+            })
+            .to('.mask h1', {
+                xPercent: 0,
+                duration: 2,
+                ease: "elastic.out(1, 0.5)",
+            }, "-=0.5")
+            .to('.fade1', {
+                transformOrigin: '50% 0%',
+                scaleY: 0,
+            })
+            .to('.fade3', {
+                transformOrigin: '50% 100%',
+                scaleY: 0,
+            }, "-=0.5")
+            .to('.fade2', {
+                height: "100vh",
+            }, "-=0.4")
+            .to('.mask h1', {
+                duration: 1,
+                scale: 0.5,
+            }, "-=0.5")
     </script>
 </body>
+
 </html>
