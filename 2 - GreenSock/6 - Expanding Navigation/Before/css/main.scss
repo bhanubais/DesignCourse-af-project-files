@@ -39,7 +39,7 @@ aside {
   background-color: #1e2327;
   height: 100vh;
   padding: 2em 6em 2em 2em;
-  //transform: translateX(-100%);
+  //   transform: translateX(-100%);
 
   h3 {
     color: #fff;
@@ -66,5 +66,6 @@ aside {
 
 main {
   padding: 2em;
-  //transform: translateX(-200%);
+  flex-grow: 1;
+  //   transform: translateX(-100%);
 }

@@ -53,7 +53,44 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+        // when document is ready
+        document.addEventListener('DOMContentLoaded', () => {
+            const aside = document.querySelector('aside');
+            const main = document.querySelector('main');
+            const menuToggle = document.querySelector('.menu-toggle');
 
+            const width = Math.ceil(aside.clientWidth) + 1;
+
+            // set initial position
+            gsap.set(aside, { x: -width });
+            gsap.set(main, { x: -width });
+
+            // create timeline
+            const t1 = gsap.timeline({
+                paused: true,
+                defaults: { duration: 0.5, ease: 'power4.inOut' }
+            })
+
+            // add animations
+            t1.to([main, aside], {
+                x: 0,
+                stagger: 0.1,
+            })
+
+            // flag for menu opening status
+            let isOpen = false;
+
+            // add event listener
+            menuToggle.addEventListener('click', e => {
+                if (!isOpen) {
+                    t1.play();
+                    isOpen = true;
+                } else {
+                    t1.reverse();
+                    isOpen = false;
+                }
+            })
+        });
 
     </script>
 </body>

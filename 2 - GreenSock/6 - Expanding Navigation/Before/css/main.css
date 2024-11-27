@@ -60,4 +60,5 @@ aside ul a:hover {
 
 main {
   padding: 2em;
+  flex-grow: 1;
 }/*# sourceMappingURL=main.css.map */
