@@ -1,4 +1,6 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }
 
@@ -47,7 +49,8 @@ ul a .heading-container {
   place-content: center;
   margin-top: 0.5em;
 }
-ul a p.primary, ul a p.secondary {
+ul a p.primary,
+ul a p.secondary {
   font-size: clamp(2rem, 2vw, 4rem);
   width: 100%;
   margin: 0;
