@@ -46,7 +46,6 @@ ul a .heading-container {
   overflow: hidden;
   height: 40px;
   display: grid;
-  place-content: center;
   margin-top: 0.5em;
 }
 ul a p.primary,
@@ -54,9 +53,10 @@ ul a p.secondary {
   font-size: clamp(2rem, 2vw, 4rem);
   width: 100%;
   margin: 0;
+  line-height: 40px;
 }
-ul a p.primary {
-  transform: translateY(50%);
+ul a p.date {
+  transform: translateY(180%);
 }
 ul a .line {
   position: absolute;
@@ -64,5 +64,6 @@ ul a .line {
   left: 0;
   width: 3%;
   border-bottom: 1px solid white;
+  transform: scaleX(0);
   transform-origin: left;
 }/*# sourceMappingURL=main.css.map */

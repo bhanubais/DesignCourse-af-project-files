@@ -74,7 +74,41 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
 
+        document.addEventListener('DOMContentLoaded', () => {
+            const links = document.querySelectorAll('a');
 
+            links.forEach(link => {
+                const t1 = gsap.timeline({
+                    paused: true,
+                    defaults: {
+                        duration: .5,
+                        ease: 'power2.inOut'
+                    }
+                })
+
+                t1
+                    .to(link.querySelectorAll('.heading-container p'), {
+                        yPercent: -100,
+                    })
+                    .to(link.querySelector('.date'), {
+                        y: 0,
+                    }, '-=.5')
+                    .to(link.querySelector('.line'), {
+                        scaleX: 1,
+                    }, '-=.5')
+
+                // add event listener to the link
+                link.addEventListener('mouseenter', () => {
+                    t1.play()
+                })
+
+                // add event listener to the link
+                link.addEventListener('mouseleave', () => {
+                    t1.reverse()
+                })
+
+            })
+        })
 
     </script>
 </body>
