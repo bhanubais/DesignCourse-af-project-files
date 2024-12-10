@@ -1,14 +1,14 @@
 body {
   margin: 0;
   height: 100vh;
-  background-color: #AECABC;
+  background-color: #aecabc;
   font-family: "Darker Grotesque", sans-serif;
 }
 
 section {
   height: 100vh;
 }
-section:nth-of-type(1) {
+section:nth-of-type(2n + 1) {
   background: #e4f0ea;
 }
 
@@ -43,7 +43,7 @@ h2 {
   align-self: center;
 }
 .card .box {
-  background: #C3D7CD;
+  background: #c3d7cd;
   position: absolute;
   right: 20%;
   top: 4em;
@@ -64,7 +64,8 @@ h2 {
   line-height: 1rem;
 }
 
-.card1 h3, .card1 p {
+.card1 h3,
+.card1 p {
   text-align: right;
   float: right;
 }
