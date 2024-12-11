@@ -45,6 +45,68 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.primary',
+                start: 'top 20%',
+                end: 'bottom center',
+                pin: true,
+                toggleActions: 'play reverse restart reverse'
+            },
+            default: {
+                ease: 'power3.out',
+                duration: 1
+            }
+        })
+
+        const scrubTl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.primary',
+                start: 'top 30%',
+                end: '40% top',
+                scrub: true
+            },
+            default: {
+                ease: 'power3.out',
+                duration: 1
+            }
+        })
+
+        tl
+            .from('.primary h1', {
+                yPercent: 100
+            })
+            .from('aside p', {
+                yPercent: 150
+            }, '-=.3')
+            .from('main p', {
+                yPercent: 200
+            }, '-=.6');
+
+        scrubTl
+            .from('.line', {
+                scaleY: 0
+            })
+            .from('span', {
+                x: 100,
+                xPercent: 0
+            }, '<');
+
+        // Initialize a new Lenis instance for smooth scrolling
+        const lenis = new Lenis();
+
+        // Synchronize Lenis scrolling with GSAP's ScrollTrigger plugin
+        lenis.on('scroll', ScrollTrigger.update);
+
+        // Add Lenis's requestAnimationFrame (raf) method to GSAP's ticker
+        // This ensures Lenis's smooth scroll animation updates on each GSAP tick
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000); // Convert time from seconds to milliseconds
+        });
+
+        // Disable lag smoothing in GSAP to prevent any delay in scroll animations
+        gsap.ticker.lagSmoothing(0);
+
     </script>
 </body>
 
