@@ -82,6 +82,117 @@
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
     <script>
 
+        const gallery = gsap.utils.toArray('img');
+
+        // set all elements
+        gsap.set('img', {
+            clipPath: 'polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)'
+        });
+        gsap.set('.border', {
+            scaleX: 0,
+        })
+        gsap.set(['span', 'p'], {
+            yPercent: 100,
+        })
+
+        // create timeline
+        const tl = gsap.timeline({
+            scrollTrigger: {
+                trigger: '.gallery',
+                start: 'top 20%',
+                end: 'bottom 20%',
+                toggleActions: 'play none play reverse',
+            },
+            defaults: {
+                ease: 'power4.inOut'
+            }
+        })
+
+        // animate elements
+        tl
+            .from('li', {
+                y: -100,
+                stagger: .1,
+                ease: 'elastic.out(1, .6)'
+            })
+            .to('img', {
+                clipPath: 'polygon(0% 95%, 100% 48%, 100% 100%, 0% 100%)',
+            }, '<')
+            .to('img', {
+                clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+            }, '-=.5')
+            .to('.border', {
+                scaleX: 1,
+            }, '-=.5')
+            .to(['span', 'p'], {
+                yPercent: 0,
+                stagger: .1,
+            }, '-=.5');
+
+
+        gallery.forEach(img => {
+            // get paragraph
+            const p = img.closest('li').querySelector('p');
+            const originalText = p.innerText;
+
+            img.addEventListener('mouseenter', () => {
+                // animation effect on image
+                gsap.to(img, {
+                    clipPath: 'polygon(0% 13%, 100% 0%, 100% 87%, 0% 100%)',
+                })
+
+                randomType(p, '01', 500, true);
+            });
+
+            img.addEventListener('mouseleave', () => {
+                // animation effect on image
+                gsap.to(img, {
+                    clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)',
+                });
+
+                p.innerText = originalText;
+            });
+        })
+
+
+
+        function randomType(element, characters, duration, sequential = false) {
+            let originalText = element.innerText;
+            let textArray = originalText.split('');
+            let charactersArray = characters.split('');
+            let startTime = new Date().getTime();
+            let interval;
+
+            if (sequential) {
+                let currentIndex = 0;
+                interval = setInterval(function () {
+                    textArray[currentIndex] = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+                    element.innerText = textArray.join('');
+                    currentIndex++;
+                    if (currentIndex === textArray.length) {
+                        currentIndex = 0;
+                    }
+                    if (new Date().getTime() - startTime >= duration) {
+                        clearInterval(interval);
+                        element.innerText = originalText;
+                    }
+                }, 20);
+            } else {
+                interval = setInterval(function () {
+                    for (let i = 0; i < textArray.length; i++) {
+                        textArray[i] = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+                    }
+                    element.innerText = textArray.join('');
+                    if (new Date().getTime() - startTime >= duration) {
+                        clearInterval(interval);
+                        element.innerText = originalText;
+                    }
+                }, 0);
+            }
+        }
+
+
+
         // smooth scroll
 
         const lenis = new Lenis()
